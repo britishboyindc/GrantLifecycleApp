@@ -1,0 +1,52 @@
+<apex:page standardController="Opportunity" sidebar="FALSE" cache="FALSE" extensions="ConvertOpportunitytoGrantController" tabStyle="Grant_Management__c">
+
+<apex:sectionHeader title="Setup New Grant" subtitle="Convert {!Opportunity.Name}"/>
+<apex:form >
+
+<apex:pageBlock mode="edit" >
+<apex:pageBlockButtons >
+<apex:commandButton action="{!createGrantRecord}" value="Save and Continue" />
+</apex:pageBlockButtons>
+
+<apex:pageBlockSection columns="2" >
+<apex:repeat value="{!GrantFields1}" var="f">
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="{!$ObjectType.Grant_Management__c.Fields[f].Label}"/>
+<apex:inputField style="{!IF ( OR ($ObjectType.Grant_Management__c.fields[f].Type == "string", $ObjectType.Grant_Management__c.fields[f].Type == "reference"), "width:250px", "") }" value="{!gm[f]}"/>
+</apex:pageBlockSectionItem>
+</apex:repeat>
+</apex:pageBlockSection>
+
+
+<apex:pageBlockSection columns="1" >
+<apex:repeat value="{!GrantFields2}" var="f">
+<apex:inputField style="width:600px" value="{!gm[f]}"/>
+</apex:repeat>
+</apex:pageBlockSection>
+
+
+</apex:pageBlock>
+
+
+<apex:pageBlock title="Attachments">
+<apex:pageBlockTable value="{!ChatterUtility.feeda}" var="fa">
+
+<apex:column headerValue="Include?">
+<apex:inputCheckbox value="{!fa.bInclude}"/>
+</apex:column>
+
+<apex:column headerValue="File Name">
+<apex:image url="{!fa.sourceca.renditionUrl}" />
+</apex:column>
+
+<apex:column headerValue="Name">
+<apex:outputLink target="_blank" value="/{!fa.sourceca.versionId}">{!fa.sourceca.Title}</apex:outputLink>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+
+
+</apex:form>
+</apex:page>

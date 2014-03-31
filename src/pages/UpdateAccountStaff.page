@@ -1,0 +1,6 @@
+<apex:page standardController="Account" title="Update Staff">
+
+<apex:sectionHeader title="{!Account.Name}" subtitle="Update Staff Participation"/>
+<c:StaffParticipationComponent recordId="{!Id}" source="Page"/>
+
+</apex:page>

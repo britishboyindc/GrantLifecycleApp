@@ -1,0 +1,127 @@
+<apex:component controller="ParticipationControllerExtension" allowDML="TRUE">
+
+<apex:attribute assignTo="{!objectId}" name="recordId" description="Id of object using this component" type="String" required="true"/>
+<apex:attribute assignTo="{!sourceRecordId}" name="sourceId" description="Id of source object for setting default staff" type="String"/>
+
+<apex:attribute assignTo="{!sNextPage}" name="nextpage" description="If set, navigate to page name on save" type="String"/>
+<apex:attribute assignTo="{!sMode}" name="mode" description="If set, set auto contacts based on logged in user" type="String"/>
+<apex:attribute assignTo="{!sFieldSet}" name="fieldset" description="If set, determines field set on Staff Participation to use" type="String"/>
+<apex:attribute assignTo="{!sSource}" name="source" description="Determines if called from Action or Page" type="String"/>
+
+
+<apex:outputPanel id="processed">
+<apex:outputPanel rendered="{!bPosted}">
+   <script>
+    window.top.location='/{!objectId}';
+   </script>
+</apex:outputPanel>
+</apex:outputPanel>
+
+<apex:form >
+<apex:pageMessages />
+
+<apex:outputPanel >
+
+<apex:pageBlock title="Staff Participation">
+<apex:pageBlockButtons location="top" >
+<apex:commandButton value="{!sButton}" action="{!processselected}" reRender="errors" rendered="{!sSource == 'Page'}" />
+<apex:commandButton value="Cancel" action="{!cancelupdate}" rendered="{!sSource == 'Page'}" Immediate="TRUE" />
+
+<apex:commandButton value="Save" action="{!processAction}" reRender="errors,processed" rendered="{!sSource == 'Action'}" />
+
+</apex:pageBlockButtons>
+
+<apex:pageBlockSection columns="1" >
+<apex:pageBlockTable id="selectedtable" value="{!pinvolvement}" var="c" cellPadding="4" border="0" rowClasses="odd,even">
+
+<apex:column headerValue="Contact">
+<apex:outputField value="{!c.Contact__c}"/>
+</apex:column>
+
+<apex:repeat value="{!resultFields}" var="f"> 
+        <apex:column rendered="{!$ObjectType.Staff_Participation__c.Fields[f].Updateable}">
+        <apex:facet name="header">
+        {!$ObjectType.Staff_Participation__c.Fields[f].label} 
+        </apex:facet>
+        <apex:inputField value="{!c[f]}" />
+        </apex:column>
+</apex:repeat>
+
+<apex:column headerValue="Select">
+<apex:commandlink value="Remove" action="{!removeselectedcontact}" reRender="selectedtable">
+<apex:param value="{!c.Contact__c}" name="rcid"/>
+</apex:commandlink>
+</apex:column>
+
+</apex:pageBlockTable>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+
+
+<apex:pageBlock rendered="{!csf.bShowCAP}" title="Search Contacts by Department">
+<apex:pageBlockButtons location="top">
+<apex:commandButton value="Switch to Contact Search" rendered="{!csf.bshowCAP}" id="showconsearch" action="{!csf.cshowsearch}"/>
+</apex:pageBlockButtons>
+<apex:selectList size="1" value="{!csf.sdept}">
+<apex:actionSupport event="onchange" action="{!search}" rerender="ctable" status="ctable"/>
+<apex:selectOptions value="{!csf.cDepartments}"/>
+</apex:selectList>
+
+
+</apex:pageBlock>
+
+<apex:pageBlock rendered="{!!csf.bShowCAP}"  title="Search All Contacts">
+<apex:PanelGrid columns="2" id="panel" cellpadding="2">
+<apex:outputLabel value="Contact First Name:"></apex:outputLabel>
+<apex:inputText id="FNtextbox" value="{!csf.searchFNText}" size="40" ></apex:inputText>
+<apex:outputLabel value="Contact Last Name" for="csf.LNtextbox"/>
+<apex:outputPanel styleClass="requiredInput" layout="block">
+<apex:outputPanel styleClass="requiredBlock" layout="block"/>
+<apex:inputText id="LNtextbox"  value="{!csf.searchText}" size="40" ></apex:inputText>
+</apex:outputPanel>
+
+<apex:commandButton id="searchbtn" action="{!search}" value="Search" rerender="ctable"></apex:commandButton> 
+</apex:PanelGrid>
+<hr/>
+<div align="right" style="margin-top: 1em"><apex:commandButton value="Switch to Department Search" rendered="{!!csf.bshowCAP}" action="{!csf.cshowCAP}"/></div>
+
+</apex:pageBlock>
+
+
+
+<apex:pageBlock title="Search Results">
+
+<apex:pageBlockTable id="ctable" value="{!csf.visiblecontacts}" var="o" cellPadding="4" border="0" rowClasses="odd,even" styleClass="tableClass">
+<apex:column headerValue="Select">
+<apex:commandlink value="Select" action="{!setSelectedContact}" reRender="selectedtable">
+<apex:param value="{!o.id}" name="cid"/>
+</apex:commandlink>
+</apex:column>
+
+<apex:column headerValue="First Name">
+{!o.Firstname}
+</apex:column>
+
+<apex:column headerValue="Last Name">
+{!o.LastName}
+</apex:column>
+
+<apex:column rendered="{!sUserDept != NULL}" headerValue="Department">
+{!o[sUserDept]}
+</apex:column>
+
+
+<apex:column headerValue="Organization">
+{!o.Account.Name}
+</apex:column>
+
+
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+</apex:outputPanel>
+</apex:form>
+
+</apex:component>

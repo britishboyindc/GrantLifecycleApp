@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity">
+
+<c:StaffParticipationComponent recordId="{!Id}" source="Action"/>
+
+</apex:page>

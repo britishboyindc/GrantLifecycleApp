@@ -1,0 +1,90 @@
+<apex:component controller="IssuesIntersectionController" allowDML="TRUE">
+
+<apex:attribute assignTo="{!objectId}" name="recordId" description="Id of object using this component" type="String" required="true"/>
+<apex:attribute assignTo="{!sourcerecordId}" name="sourceId" description="Id of object using this component" type="String"/>
+<apex:attribute assignTo="{!sNextPage}" name="nextpage" description="If set, navigate to page name on save" type="String"/>
+<apex:attribute assignTo="{!sMode}" name="mode" description="If set, set auto contacts based on logged in user" type="String"/>
+<apex:attribute assignTo="{!sSource}" name="source" description="Determines if called from Action or Page" type="String"/>
+
+
+<apex:form >
+<apex:pageMessages />
+<apex:outputPanel id="processed">
+<apex:outputPanel rendered="{!bPosted}">
+   <script>
+    window.top.location='/{!objectId}';
+   </script>
+</apex:outputPanel>
+</apex:outputPanel>
+
+<apex:pageBlock mode="edit" title="Issue Selection">
+<apex:pageBlockButtons location="top" >
+
+<apex:commandButton value="Save and Finish" action="{!processSelectedIssues}" reRender="errors" rendered="{!sSource == 'Page'}" />
+<apex:commandButton value="Cancel" action="{!cancelupdate}" rendered="{!sSource == 'Page'}" Immediate="TRUE" />
+<apex:commandButton value="Save" action="{!processAction}" reRender="errors,processed" rendered="{!sSource == 'Action'}" />
+</apex:pageBlockButtons>
+
+<apex:outputPanel id="IssueSections">
+<apex:repeat value="{!TaxonomySections}" var="issues">
+
+<apex:pageBlockSection collapsible="FALSE" columns="1" title="{!issues}">
+<apex:pageBlockTable columnsWidth="200,200,20,20" title="{!issues}" value="{!TaxonomySectionMap[issues]}" var="c" cellPadding="4" border="0" rowClasses="odd,even" styleClass="tableClass">
+
+<apex:column headerValue="{!issues}">
+<apex:outputText value="{!c.issue.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Included By">
+<apex:outputField value="{!c.issueintersection.Object__c}"/> :
+<apex:outputField value="{!c.issueintersection.Record_Name__c}"/>
+</apex:column>
+
+<apex:column rendered="{!sMode == 'UPDATEWITHDEFAULT'}" headerValue="Set as a Default?">
+<apex:inputField value="{!c.issueintersection.Default_for_Related_Item__c}"/>
+</apex:column>
+
+<apex:column headerValue="Select">
+<apex:commandlink value="Remove" action="{!removeselectedIssue}" reRender="ctable,IssueSections">
+<apex:param value="{!c.issue.Id}" name="rcid"/>
+</apex:commandlink>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+</apex:repeat>
+</apex:outputPanel>
+
+</apex:pageBlock>
+
+<apex:pageBlock title="Select a Category">
+
+<apex:selectList size="1" value="{!cIssueId}">
+<apex:actionSupport event="onchange" action="{!search}" rerender="ctable" status="ctable"/>
+<apex:selectOptions value="{!cIssues}"/>
+</apex:selectList>
+</apex:pageBlock>
+
+<apex:pageBlock title="Select an Issue">
+
+<apex:pageBlockTable id="ctable" value="{!newIssuesforSelection}" var="o" cellPadding="4" border="0" rowClasses="odd,even" styleClass="tableClass">
+
+<apex:column headerValue="Select">
+<apex:commandlink value="Select" action="{!setselectedissue}" reRender="ctable,IssueSections">
+<apex:param value="{!o.id}" name="cid"/>
+</apex:commandlink>
+</apex:column>
+
+<apex:column headerValue="Name">
+{!o.Name}
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+
+</apex:form>
+
+
+</apex:component>

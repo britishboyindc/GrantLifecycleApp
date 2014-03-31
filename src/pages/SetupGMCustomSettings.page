@@ -1,0 +1,99 @@
+<apex:page controller="SetupCustomSettings">
+<apex:sectionHeader title="Custom Settings" subtitle="Grant Management Settings"/>
+<apex:form >
+<apex:pageBlock mode="edit" >
+<apex:pageBlockButtons >
+<apex:commandButton action="{!updateSettings}" value="Update Settings"/>
+</apex:pageBlockButtons>
+
+
+<apex:pageBlockSection collapsible="false" title="Grant Management General Settings" >
+<apex:pageBlockTable columns="3" columnsWidth="40%;40%;30%;" value="{!gm}" var="cs">
+<apex:column headerValue="Setting Name" >
+<apex:outputField value="{!cs.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Value" >
+<apex:inputField style="width:150px;" rendered="{!AND (cs.String_Value__c == NULL, cs.Id_Value__c == NULL)}" value="{!cs.Boolean_Value__c}"/>
+<apex:inputField style="width:150px;" rendered="{!cs.String_Value__c != NULL}" value="{!cs.String_Value__c}"/>
+<apex:inputField style="width:150px;" rendered="{!cs.Id_Value__c != NULL}" value="{!cs.Id_Value__c}"/>
+</apex:column>
+
+
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+<apex:pageBlockSection collapsible="false" title="Participation Controller Settings" >
+<apex:pageBlockTable columns="3" columnsWidth="40%;40%;30%;"  value="{!pcesettings}" var="cs">
+<apex:column headerValue="Object API Name" >
+<apex:outputField value="{!cs.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Lookup Field API Name on Staff Participation Object" >
+<apex:inputField style="width:150px;" value="{!cs.Staff_Participation_Field__c}"/>
+</apex:column>
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+
+
+<apex:pageBlockSection collapsible="false" title="Opportunity to Grant Settings" >
+<apex:pageBlockTable columns="4" columnsWidth="40%;40%;10%;10%" value="{!ogf}" var="cs">
+<apex:column headerValue="Opportunity API Field Name" >
+<apex:outputField value="{!cs.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Grant Field API Name" >
+<apex:inputField style="width:150px;"  value="{!cs.Grant_Field__c}"/>
+</apex:column>
+
+<apex:column headerValue="Order on Page" >
+<apex:inputField style="width:50px;" value="{!cs.Page_Order__c}"/>
+</apex:column>
+
+<apex:column headerValue="Section on Page" >
+<apex:inputField style="width:50px;" value="{!cs.Section_on_Page__c}"/>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+
+<apex:pageBlockSection collapsible="false" title="Issues Management Settings" >
+<apex:pageBlockTable columns="3" columnsWidth="40%;40%;30%;"  value="{!issuesettings}" var="cs">
+<apex:column headerValue="Source Object Name" >
+<apex:outputField value="{!cs.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Field API Name on Issue Intersection Object" >
+<apex:inputField style="width:150px;" value="{!cs.Issue_Intersection_Field__c}"/>
+</apex:column>
+
+<apex:column headerValue="Taxonomy Values" >
+<apex:inputField style="width:150px;" value="{!cs.String_Value__c}"/>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+<apex:pageBlockSection collapsible="false" title="Budget Settings" >
+<apex:pageBlockTable columns="3" columnsWidth="40%;30%;30%;"  value="{!bud}" var="cs">
+<apex:column headerValue="Setting Name" >
+<apex:outputField value="{!cs.Name}"/>
+</apex:column>
+
+<apex:column headerValue="Permission Set Id" >
+<apex:inputField style="width:150px;" value="{!cs.Id_Value__c}"/>
+</apex:column>
+<apex:column headerValue="String Value">
+<apex:inputField style="width:150px;" value="{!cs.String_Value__c}"/>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+
+
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

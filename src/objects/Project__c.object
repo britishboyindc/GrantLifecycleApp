@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>BvA_Notes__c</fullName>
+        <description>Use this field for explanatory notes to appear on budget vs. actual reports... e.g.  if some money was moved between projects.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Use this field for explanatory notes to appear on budget vs. actual reports... e.g.  if some money was moved between projects.</inlineHelpText>
+        <label>BvA Notes</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Closed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this grant no longer active?</inlineHelpText>
+        <label>Closed?</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Department</label>
+        <referenceTo>Department__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Display_Fringe_Benefits_Separately__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this box to display fringe benefits separately from salary on the budget vs. actual report.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to display fringe benefits separately from salary on the budget vs. actual report.</inlineHelpText>
+        <label>Display Fringe Benefits Separately</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Requirements__c</fullName>
+        <externalId>false</externalId>
+        <label>Grant Requirements</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Include_Operational_Overhead_in_Expense__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this to add operational overhead to the overhead amount on budget vs. actual report.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to add operational overhead to the overhead amount on budget vs. actual report.</inlineHelpText>
+        <label>Include Operational Overhead in Expense</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Staff__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Staff</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Objectives__c</fullName>
+        <externalId>false</externalId>
+        <label>Objectives</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Code__c</fullName>
+        <description>Numeric code from Chart of Accounts</description>
+        <externalId>false</externalId>
+        <label>Project Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Grant_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Grant Manager</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Projects Managed by Contact</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Use_YTD_Report__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this box to base the budget vs. actual report on year-to-date revenue and expenses.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to base the budget vs. actual report on year-to-date revenue and expenses.</inlineHelpText>
+        <label>Use YTD Report</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Project</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Project_Code__c</columns>
+        <columns>NAME</columns>
+        <columns>Use_YTD_Report__c</columns>
+        <columns>Include_Operational_Overhead_in_Expense__c</columns>
+        <columns>Display_Fringe_Benefits_Separately__c</columns>
+        <columns>Project_Grant_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>all_wit_project_code</fullName>
+        <columns>Project_Code__c</columns>
+        <columns>NAME</columns>
+        <columns>Use_YTD_Report__c</columns>
+        <columns>Include_Operational_Overhead_in_Expense__c</columns>
+        <columns>Display_Fringe_Benefits_Separately__c</columns>
+        <columns>Project_Grant_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Project_Code__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>All w/ Project Code</label>
+    </listViews>
+    <nameField>
+        <label>Project Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01Ii0000000yRv3EAE_00Ni000000CBqX7EAL</fullName>
+        <active>true</active>
+        <field>Deliverable__c.Project__c</field>
+        <filterItems>
+            <field>Project__c.Closed__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Deliverable_Project</name>
+    </namedFilters>
+    <pluralLabel>Projects</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Department__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Grant_Manager__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Closed__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Budget_vs_Actual_Report</fullName>
+        <availability>online</availability>
+        <description>Display budget vs. actual report for this project. (Only people with correct permissions can see the output.)</description>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Budget vs Actual Report</masterLabel>
+        <openType>replace</openType>
+        <page>BudgetvsActual</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

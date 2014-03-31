@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Determine&apos;s who has access to Budget Data</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Id_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Id Value</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>String_Value__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To store string values for use in Budget Reports</inlineHelpText>
+        <label>String Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Budget Settings</label>
+</CustomObject>

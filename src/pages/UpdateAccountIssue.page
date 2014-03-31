@@ -1,0 +1,6 @@
+<apex:page standardController="Account">
+
+<apex:sectionHeader title="{!Account.Name}" subtitle="Update Issues"/>
+<c:IssusIntersectionComponent recordId="{!Id}" mode="UPDATE" source="Page"/>
+
+</apex:page>

@@ -1,0 +1,17 @@
+<apex:component >
+    <!-- Attribute Definitions -->
+    <apex:attribute name="myValue" description="This is the value for the component."
+                    type="Decimal" required="true"/>
+    
+    <apex:outputText value="{0, number, ###,###,###'&nbsp;'}" rendered="{!myValue >= 0}" escape="false">
+    <apex:param value="{!myValue}"/>
+    </apex:outputText>
+    <apex:outputText value="{0, number,(###,###,###)}" rendered="{!myValue < 0}">
+        <apex:param value="{!myValue * -1}"/>
+    </apex:outputText>
+<!--
+    <apex:outputText value="({0, number,###,###,###})" rendered="{!myValue < 0}">
+        <apex:param value="{!myValue * -1}"/>
+    </apex:outputText>
+-->    
+</apex:component>

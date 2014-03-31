@@ -1,0 +1,5 @@
+<apex:page standardController="Project__c">
+
+<c:StaffParticipationComponent recordId="{!Id}" source="Action"/>
+
+</apex:page>

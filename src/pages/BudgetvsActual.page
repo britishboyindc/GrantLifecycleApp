@@ -1,0 +1,111 @@
+<apex:page standardController="Project__c" extensions="BudgetActualController" action="{!confirmAccess}" sidebar="FALSE" title="Budget vs Actual Report">
+
+<style>
+td {padding: 0 2em 0 0} 
+
+td.c1b, th.c1b {display: <apex:outputText value="{!IF (budgetcolumndisplaymap[company1], '', 'None')}"></apex:outputText>}
+td.c2b, th.c2b {display: <apex:outputText value="{!IF (budgetcolumndisplaymap[company2], '', 'None')}"></apex:outputText>}
+td.c1a, th.c1a {display: <apex:outputText value="{!IF (actualcolumndisplaymap[company1], '', 'None')}"></apex:outputText>} 
+td.c2a, th.c2a {display: <apex:outputText value="{!IF (actualcolumndisplaymap[company2], '', 'None')}"></apex:outputText>} 
+
+td.coltotal, th.coltotal 
+{display: <apex:outputText value="{!IF ( (budgetcolumndisplaymap[company1] == True) || ( budgetcolumndisplaymap[company2] == True) || 
+( (actualcolumndisplaymap[company1] == True) && (actualcolumndisplaymap[company2] == True) ), '', 'None')}"></apex:outputText>} 
+/*
+*/
+.heading div {font-weight: bold;}
+.lineitem {padding-left:1em;}
+.budget, .actual, .total-budget, .total-actual, .total-total-budget, .total-total-actual  {text-align: right}
+.total-budget div, .total-actual div, .total-total-budget div, .total-total-actual div {border-top: 1px black solid}
+.total-total-budget div, .total-total-actual div {border-bottom: 4px double black}
+
+</style>
+
+<apex:sectionHeader title="{!IF (Project__c.Use_YTD_Report__c, 'Year-to-Date', 'Budget vs. Actual')}" subtitle="{!Project__c.Name}"/>
+
+<p>Expense data complete through {!sCurrentDataMonth}</p>
+
+<apex:outputField value="{!Project__c.Project_Code__c}" rendered="FALSE"/>
+<apex:outputField value="{!Project__c.Display_Fringe_Benefits_Separately__c}" rendered="FALSE"/>
+<apex:outputField value="{!Project__c.Use_YTD_Report__c}" rendered="FALSE"/> 
+<apex:outputField value="{!Project__c.Include_Operational_Overhead_in_Expense__c}" rendered="FALSE"/> 
+
+<table>
+<tbody>
+<tr>
+<th>Description</th>
+<th class="c1b">Budget ({!company1})</th>
+<th class="c1a">Actual ({!company1})</th>
+<th class="c2b">Budget ({!company2})</th>
+<th class="c2a">Actual ({!company2})</th>
+<th class="coltotal"><apex:outputText value="{!IF (Project__c.Use_YTD_Report__c, 'Total', 'Variance')}"/></th>
+</tr>
+
+<!-- example of a set -->
+<!-- heading -->
+
+<apex:outputPanel rendered="{!Project__c.Use_YTD_Report__c}">
+<tr><td><div>&nbsp;</div></td></tr>
+<tr>
+<td class="heading" colspan="2"><div>Net Assets</div></td>
+</tr>
+
+<c:BudgetActualDisplayComponent dataType="LineItem" badata="{!StartingBalance}"/>
+<c:BudgetActualDisplayComponent dataType="LineItem" badata="{!Revenue}"/>
+
+<!-- total -->
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!TotalCash}"/>
+</apex:outputPanel>
+
+<apex:outputPanel rendered="{!Project__c.Use_YTD_Report__c = False}">
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!Revenue}"/>
+</apex:outputPanel>
+
+
+<tr><td><div>&nbsp;</div></td></tr>
+<tr>
+<td class="heading" colspan="2"><div>Personnel</div></td>
+</tr>
+
+<apex:repeat value="{!salarydisplaylist2}" var="sl"> 
+    <apex:outputPanel rendered="{!salarydisplaymap[sl].bDisplay}">
+        <c:BudgetActualDisplayComponent dataType="LineItem" badata="{!salarydisplaymap[sl]}"/>
+    </apex:outputPanel>
+</apex:repeat>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!TotalSalaries}"/>
+<tr><td><div>&nbsp;</div></td></tr>
+
+<apex:outputPanel rendered="{!Project__c.Display_Fringe_Benefits_Separately__c}">
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!FringeBenefits}"/>
+</apex:outputPanel>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!SubTotalPersonnel}"/>
+
+<tr>
+<td class="heading"><div>Program Expenditures</div></td>
+</tr>
+
+<apex:repeat value="{!sExpenseCategories2}" var="el"> 
+<apex:outputPanel rendered="{!expensedisplaymap[el].bDisplay}">
+<c:BudgetActualDisplayComponent dataType="LineItem" badata="{!expensedisplaymap[el]}"/>
+</apex:outputPanel>
+</apex:repeat>
+
+<tr><td><div>&nbsp;</div></td></tr>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!SubTotalProgramExpenditures}"/>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!TotalDirectExpenditures}"/>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!AppliedOverhead}"/>
+
+<c:BudgetActualDisplayComponent dataType="Total" badata="{!TotalExpenditures}"/>
+
+<c:BudgetActualDisplayComponent dataType="FinalTotal" badata="{!Balance}"/>
+
+
+
+</tbody></table>
+
+</apex:page>

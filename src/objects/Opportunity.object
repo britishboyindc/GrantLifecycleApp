@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Development_Lead__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Development staff driving the ask</inlineHelpText>
+        <label>Development Lead</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Other/Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Joe Alsop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Joe Anderson</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stefan Romberg</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Final_Report_Due__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>When is the final report due?</inlineHelpText>
+        <label>Final Report Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Provisions__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Any notes about the grant requirements other than reporting.</inlineHelpText>
+        <label>Grant Provisions</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Lead_Staff__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Staffers listed as Lead Staff on the Staff Participation related list.</inlineHelpText>
+        <label>Lead Staff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Reporting_Requirements__c</fullName>
+        <externalId>false</externalId>
+        <label>Reporting Requirements</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <webLinks>
+        <fullName>Create_Grant_Record</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Create Grant Record</masterLabel>
+        <openType>replace</openType>
+        <page>ConvertToGrantRecord</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

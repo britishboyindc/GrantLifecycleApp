@@ -1,0 +1,7 @@
+<apex:page StandardController="Deliverable__c" sidebar="false" cache="false" tabstyle="Issue__c">
+
+<apex:sectionHeader title="Welcome to the Deliverables Wizard!" subtitle="Step Three of Three" />
+<c:IssusIntersectionComponent recordId="{!Id}" mode="NEWWITHDEFAULT" source="Page"/>
+
+
+</apex:page>

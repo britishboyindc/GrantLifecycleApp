@@ -1,0 +1,5 @@
+<apex:page standardController="Deliverable__c">
+
+<c:IssusIntersectionComponent recordId="{!Id}" mode="UPDATE" source="Action"/>
+
+</apex:page>

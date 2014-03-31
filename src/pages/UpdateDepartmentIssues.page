@@ -1,0 +1,6 @@
+<apex:page standardController="Department__c">
+
+<apex:sectionHeader title="{!Department__c.Name}" subtitle="Update Issues"/>
+<c:IssusIntersectionComponent recordId="{!Id}" mode="UPDATEWITHDEFAULT" source="Page"/>
+
+</apex:page>

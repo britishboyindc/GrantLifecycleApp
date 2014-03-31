@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Store Field Map for Issue Intersection Object VF Component</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Issue_Intersection_Field__c</fullName>
+        <externalId>false</externalId>
+        <label>Issue Intersection Field</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>String_Value__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Store generic string parameters</inlineHelpText>
+        <label>String Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Issue Utility Settings</label>
+</CustomObject>

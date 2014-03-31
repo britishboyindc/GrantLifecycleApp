@@ -1,0 +1,63 @@
+<apex:page sidebar="False" cache="false" standardController="Deliverable__c" extensions="DeliverablesWizardControllerExtension">
+
+<style>
+label {
+font-weight:bold;
+}
+</style>
+
+<apex:form >
+        
+<apex:pageMessages />
+
+<apex:sectionHeader title="Welcome to the Deliverables Wizard!" subtitle="Step One of Three" />
+<apex:pageBlock mode="edit" title="New Deliverable Wizard">
+<apex:pageBlockButtons >
+<apex:commandButton styleClass="input.btn" value="Next Step" action="{!authorpage}"/>
+<apex:commandButton value="Cancel" action="{!cancel}"/>
+</apex:pageBlockButtons>     
+
+<apex:pageBlockSection columns="2">
+
+
+<apex:repeat value="{!$ObjectType.Deliverable__c.FieldSets.Deliverable_Wizard_Short}" var="f"> 
+       <apex:pageBlockSectionItem >
+       <apex:outputLabel value="{!$ObjectType.Deliverable__c.Fields[f].Label}"/>
+       <apex:inputField required="{!OR(f.required, f.dbrequired)}" value="{!Deliverable__c[f.fieldPath]}" />
+       </apex:pageBlockSectionItem>
+</apex:repeat>
+
+   </apex:pageBlockSection> 
+
+   <apex:pageBlockSection columns="1">     
+        <apex:pageBlockSectionItem >
+        <apex:outputLabel value="Project"/>
+        <apex:selectList label="Project Code" size="1" value="{!projectid}">
+        <apex:selectOptions value="{!projectcodes}"/>
+        </apex:selectList>
+        </apex:pageBlockSectionItem> 
+  
+        <apex:pageBlockSectionItem >
+        <apex:outputLabel value="Grant"/>
+        <apex:selectList label="Related Grant" size="1" value="{!grantid}">
+        <apex:selectOptions value="{!grantcodes}"/>
+        </apex:selectList>
+        </apex:pageBlockSectionItem>
+      
+      </apex:pageBlockSection>
+      
+        <apex:pageBlockSection columns="1">
+          
+    <apex:repeat value="{!$ObjectType.Deliverable__c.FieldSets.Deliverable_Wizard_Long}" var="f"> 
+       <apex:pageBlockSectionItem >
+       <apex:outputLabel value="{!$ObjectType.Deliverable__c.Fields[f].Label}"/>
+       <apex:inputField style="{!IF (f.Type == "textarea", "width:400px;height75px;","")}"  required="{!OR(f.required, f.dbrequired)}" value="{!Deliverable__c[f.fieldPath]}" />
+       </apex:pageBlockSectionItem>
+    </apex:repeat>
+        
+    </apex:pageBlocksection>
+
+</apex:pageBlock>
+       
+</apex:form>
+</apex:page>

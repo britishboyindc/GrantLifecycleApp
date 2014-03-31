@@ -1,0 +1,6 @@
+<apex:page standardController="Contact">
+
+<apex:sectionHeader title="{!Contact.Name}" subtitle="Update Issues"/>
+<c:IssusIntersectionComponent recordId="{!Id}" mode="UPDATE" source="Page"/>
+
+</apex:page>

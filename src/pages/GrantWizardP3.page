@@ -1,0 +1,117 @@
+<apex:page standardController="Grant_Management__c" sidebar="FALSE" cache="FALSE" extensions="SetupNewGrantControllerExtension">
+
+<apex:sectionHeader id="sectionheaderreports" title="{!sHeaderText}" subtitle="Setup Reports for {!Grant_Management__c.Name}"/>
+
+<script>
+function setFocusOnLoad() {}
+</script>
+
+<apex:form >
+
+<apex:outputPanel rendered="FALSE">
+{!Grant_Management__c.Grant_Start_Date__c}
+{!Grant_Management__c.Grant_End_Date__c}
+</apex:outputPanel>
+
+
+<apex:pageBlock mode="edit" id="reportblock" rendered="{!bshownewgr}" >
+
+<apex:pageMessages />
+
+<apex:pageBlockButtons >
+<apex:commandButton action="{!addNewGrantReport}" value="Add Milestone"/>
+<apex:commandButton action="{!insertGrantReports}" value="Save and Finish"/>
+<apex:commandButton action="{!gotoGrant}" value="Just Go To Grant"/>
+
+</apex:pageBlockButtons>
+
+<apex:pageBlockTable id="reportsnew" value="{!grw}" var="grnew" rendered="{!bshownewgr}">
+
+<apex:column headerValue="Create Milestone?">
+<apex:inputCheckbox value="{!grnew.bCreate}"/>
+</apex:column>
+
+<apex:column headerValue="Due Date">
+<apex:inputField value="{!grnew.grr.Due_Date__c}"/>
+</apex:column>
+
+<apex:column headerValue="Type">
+<apex:inputField value="{!grnew.grr.Report_Type__c}"/>
+</apex:column>
+
+<apex:column headerValue="Status">
+<apex:inputField value="{!grnew.grr.Status__c}"/>
+</apex:column>
+
+<apex:column headerValue="Include Budget Report?">
+<apex:inputCheckbox value="{!grnew.bBudgetReport}"/>
+</apex:column>
+
+<apex:column headerValue="Include Narrative Report?">
+<apex:inputCheckbox value="{!grnew.bNarrative}"/>
+</apex:column>
+
+</apex:pageBlockTable>
+</apex:pageBlock>
+
+<!--
+<apex:pageBlock rendered="{!!bshownewgr}">
+<apex:pageBlockTable id="reports" value="{!grw}" var="gr">
+<apex:column headerValue="Action" >
+<apex:commandLink action="{!setupReportDetails}" value="select" reRender="reportdetailblock">
+<apex:param name="reportlink" assignTo="{!ReportId}" value="{!gr.grr.Id}"/>
+</apex:commandLink>
+</apex:column>
+
+
+<apex:column value="{!gr.grr.Report_Type__c}"/>
+<apex:column value="{!gr.grr.Due_Date__c}"/>
+<apex:column value="{!gr.grr.Status__c}"/>
+</apex:pageBlockTable>
+</apex:pageBlock>
+-->
+
+<!--
+<apex:outputPanel id="reportdetailblock">
+
+
+<apex:pageBlock title="{!ReportName}" id="reportdetailpageblock" >
+<apex:pageBlockButtons >
+<apex:commandButton action="{!newReportDetail}" value="Create New Report Item" reRender="reportdetailblock" rendered="{!bshownewgrd}" />
+<apex:commandButton action="{!updateReportDetails}" value="Save Updates" reRender="reportdetailblock" rendered="{!bshownewgrd}" />
+<apex:commandButton action="{!gotoGrant}" value="Go To Grant"/>
+</apex:pageBlockButtons>
+
+
+
+<apex:pageBlockTable id="reportdetails" value="{!GrantReportDetails}" var="grd" rendered="{!bshownewgrdetails}" >
+
+<apex:column headerValue="Report Format">
+<apex:inputField value="{!grd.Report_Format__c}"/>
+</apex:column>
+
+<apex:column headerValue="Report Writer">
+<apex:inputField value="{!grd.Report_Writer_Contact__c}"/> 
+</apex:column>
+
+<apex:column headerValue="Report Reviewer">
+<apex:inputField value="{!grd.Report_Reviewer_Contact__c}"/>
+</apex:column>
+
+<apex:column headerValue="Date to Reviewer">
+<apex:inputField value="{!grd.Date_Due_to_Reviewer__c}"/>
+</apex:column>
+
+<apex:column headerValue="Description">
+<apex:inputField style="width:200px;" value="{!grd.Short_Description__c}"/>
+</apex:column>
+
+</apex:pageBlockTable>
+
+
+</apex:pageBlock>
+</apex:outputPanel>
+-->
+
+</apex:form>
+</apex:page>

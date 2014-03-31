@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>*</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Grant_Lifecyle</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Contact.gm_Department_Reference__c</members>
+        <members>Contact.gm_Department__c</members>
+        <members>Contact.gm_Related_User_Record__c</members>
+        <members>Opportunity.Development_Lead__c</members>
+        <members>Opportunity.Final_Report_Due__c</members>
+        <members>Opportunity.Grant_Provisions__c</members>
+        <members>Opportunity.Lead_Staff__c</members>
+        <members>Opportunity.Reporting_Requirements__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Accounting_Category__c</members>
+        <members>Accounting_Code__c</members>
+        <members>Accounting_Data_Load__c</members>
+        <members>Budget_Settings__c</members>
+        <members>Deliverable__c</members>
+        <members>Department__c</members>
+        <members>GrantManagementSettings__c</members>
+        <members>Grant_Deliverable__c</members>
+        <members>Grant_Management__c</members>
+        <members>Grant_Report_Detail__c</members>
+        <members>Grant_Reporting_Requirement__c</members>
+        <members>Impact__c</members>
+        <members>Issue_Intersection__c</members>
+        <members>Issue_Utility_Settings__c</members>
+        <members>Issue__c</members>
+        <members>Opportunity_Code__c</members>
+        <members>Opty_Grant_Fields__c</members>
+        <members>Outreach__c</members>
+        <members>ParticipationControllerSettings__c</members>
+        <members>Project__c</members>
+        <members>Staff_Participation__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Accounting_Category__c-Accounting Category Layout</members>
+        <members>Accounting_Code__c-Accounting Code Layout</members>
+        <members>Accounting_Data_Load__c-Accounting Data Load Layout</members>
+        <members>Deliverable__c-Deliverable Layout</members>
+        <members>Department__c-Department Layout</members>
+        <members>Grant_Deliverable__c-Grant Deliverable Layout</members>
+        <members>Grant_Management__c-Grant Management Layout</members>
+        <members>Grant_Report_Detail__c-Grant Report Layout</members>
+        <members>Grant_Reporting_Requirement__c-Grant Report Layout</members>
+        <members>Impact__c-Impact Layout</members>
+        <members>Issue_Intersection__c-Issue Intersection Layout</members>
+        <members>Issue__c-Issue Layout</members>
+        <members>Opportunity-Opportunity Layout with Grant Management</members>
+        <members>Opportunity_Code__c-Opportunity Code Layout</members>
+        <members>Outreach__c-Impact</members>
+        <members>Outreach__c-Meeting</members>
+        <members>Outreach__c-Outreach Layout</members>
+        <members>Outreach__c-Press Clips - Print</members>
+        <members>Outreach__c-Press Clips - Radio</members>
+        <members>Outreach__c-Press Clips - TV</members>
+        <members>Outreach__c-Testimony%2FSpeech</members>
+        <members>Project__c-Project Layout</members>
+        <members>Staff_Participation__c-Staff Participation Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Budget_Data_Access</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>New_Report</members>
+        <members>New_Report_Item</members>
+        <members>Update_Issues</members>
+        <members>Update_Issues</members>
+        <members>Update_Issues</members>
+        <members>Update_Issues</members>
+        <members>Update_Issues</members>
+        <members>Update_Issues</members>
+        <members>Update_Staff</members>
+        <members>Update_Staff</members>
+        <members>Update_Staff</members>
+        <members>Update_Staff</members>
+        <members>Update_Staff</members>
+        <members>Update_Staff</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>Grant_Lifecycle/Press_Clips_Print</members>
+        <members>Grant_Lifecycle/Press_Clips_Radio</members>
+        <members>Grant_Lifecycle/Press_Clips_TV</members>
+        <members>Grant_Lifecycle/Projects_Ending_in_Next_3_Months</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Opportunity.Create_Grant_Record</members>
+        <name>WebLink</name>
+    </types>
+    <types>
+        <members>Issue_Intersection__c</members>
+        <name>Workflow</name>
+    </types>
+    <version>29.0</version>
+</Package>

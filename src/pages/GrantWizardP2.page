@@ -1,0 +1,8 @@
+<apex:page standardController="Grant_Management__c" sidebar="FALSE" cache="FALSE" tabstyle="Grant_Management__c">
+
+<apex:sectionHeader title="Setup New Grant (Step 2 of 3)" subtitle="Setup Staff Participation"/>
+
+<c:StaffParticipationComponent recordId="{!Id}" sourceId="{!$CurrentPage.parameters.sId}" mode="NEW" nextpage="GrantWizardP3" source="Page"/>
+
+
+</apex:page>

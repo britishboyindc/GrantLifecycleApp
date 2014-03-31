@@ -1,0 +1,6 @@
+<apex:page standardController="Deliverable__c">
+
+<apex:sectionHeader title="{!Deliverable__c.Name}" subtitle="Set Issues"/>
+<c:IssusIntersectionComponent recordId="{!Id}" mode="NEWWITHDEFAULT"/>
+
+</apex:page>

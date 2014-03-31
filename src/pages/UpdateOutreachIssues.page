@@ -1,0 +1,6 @@
+<apex:page standardController="Outreach__c">
+
+<apex:sectionHeader title="{!Outreach__c.Name}" subtitle="Update Issues"/>
+<c:IssusIntersectionComponent recordId="{!Id}" mode="UPDATE" source="Page"/>
+
+</apex:page>

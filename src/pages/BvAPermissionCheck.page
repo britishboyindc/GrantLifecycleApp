@@ -1,0 +1,16 @@
+<apex:page StandardController="Grant_Management__c" >
+
+<apex:pageMessage severity="warning" strength="3" >
+
+<br/>
+<h1>Restricted</h1><br/>
+Access to budget vs. actual data is permitted on a project by project basis. <br/>
+<br/>
+If you believe you should have access to the data for this project, please contact Finance.<br/>
+<br/>
+
+<apex:outputLink value="/{!Grant_Management__c.Id}">Return to project page</apex:outputLink>
+
+
+</apex:pageMessage>
+</apex:page>

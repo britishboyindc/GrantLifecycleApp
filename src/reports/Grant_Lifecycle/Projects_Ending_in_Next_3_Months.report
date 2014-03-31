@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Project__c.Project_Code__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Project_Grant_Manager__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Department__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Project__c.End_Date__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Projects Ending in Next 3 Months</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Project__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Project__c.End_Date__c</dateColumn>
+        <interval>INTERVAL_NEXT90</interval>
+    </timeFrameFilter>
+</Report>

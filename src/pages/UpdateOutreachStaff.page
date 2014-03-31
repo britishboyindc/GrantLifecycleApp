@@ -1,0 +1,6 @@
+<apex:page standardController="Outreach__c" title="Update Outreach Staff">
+
+<apex:sectionHeader title="{!Outreach__c.Name}" subtitle="Update Staff Participation"/>
+<c:StaffParticipationComponent recordId="{!Id}" source="Page"/>
+
+</apex:page>

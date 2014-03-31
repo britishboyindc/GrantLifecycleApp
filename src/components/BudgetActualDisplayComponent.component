@@ -1,0 +1,47 @@
+<apex:component controller="BudgetActualDisplayController">
+ 
+<apex:attribute assignTo="{!baw}" name="badata" description="BA Wrapper Class" type="BudgetActualWrapper" required="true"/> 
+<apex:attribute assignTo="{!sType}" name="dataType" description="Data Type being displayed" type="String" required="true"/> 
+
+
+<apex:outputPanel rendered="{!sType == 'Total'}">
+
+<tr>
+<td class="total"><div>{!baw.sLabel}</div></td>
+<td class="budget c1b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget1}"/></div></td>
+<td class="actual c1a"><div><c:Budget_Actual_Output myValue="{!baw.iActual1}"/></div></td>
+<td class="budget c2b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget2}"/></div></td>
+<td class="actual c2a"><div><c:Budget_Actual_Output myValue="{!baw.iActual2}"/></div></td>
+<td class="actual coltotal"><div><c:Budget_Actual_Output myValue="{!baw.iRemaining}"/></div></td>
+</tr> 
+<tr><td><div>&nbsp;</div></td></tr> 
+</apex:outputPanel>
+
+<apex:outputPanel rendered="{!sType == 'LineItem'}">
+
+<tr>
+<td class="lineitem"><div>{!baw.sLabel}</div></td>
+<td class="budget c1b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget1}"/></div></td>
+<td class="actual c1a"><div><c:Budget_Actual_Output myValue="{!baw.iActual1}"/></div></td>
+<td class="budget c2b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget2}"/></div></td>
+<td class="actual c2a"><div><c:Budget_Actual_Output myValue="{!baw.iActual2}"/></div></td>
+<td class="actual coltotal"><div><c:Budget_Actual_Output myValue="{!baw.iRemaining}"/></div></td>
+</tr>
+
+</apex:outputPanel>
+
+<apex:outputPanel rendered="{!sType == 'FinalTotal'}">
+
+<tr>
+<td class="total-total"><div>{!baw.sLabel}</div></td>
+
+<td class="total-total-actual c1b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget1}"/></div></td>
+<td class="total-total-actual c1a"><div><c:Budget_Actual_Output myValue="{!baw.iActual1}"/></div></td>
+<td class="total-total-actual c2b"><div><c:Budget_Actual_Output myValue="{!baw.iBudget2}"/></div></td>
+<td class="total-total-actual c2a"><div><c:Budget_Actual_Output myValue="{!baw.iActual2}"/></div></td>
+
+<td class="total-total-actual coltotal"><div><c:Budget_Actual_Output myValue="{!baw.iRemaining}"/></div></td>
+</tr>
+</apex:outputPanel>
+ 
+</apex:component>

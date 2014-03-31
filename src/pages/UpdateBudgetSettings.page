@@ -1,0 +1,20 @@
+<apex:page controller="SetupCustomSettings">
+<apex:sectionHeader title="Custom Settings" subtitle="Grant Management Settings"/>
+<apex:form >
+<apex:pageBlock mode="edit" >
+<apex:pageBlockButtons >
+<apex:commandButton action="{!updateRecentMonth}" value="Update Budget Settings"/>
+</apex:pageBlockButtons>
+
+<apex:pageBlockSection collapsible="false" title="Current Data Month" >
+
+<apex:pageBlockSectionItem >
+<apex:inputText style="width:150px;" value="{!budmap['CurrentDataMonth'].String_Value__c}"/>
+</apex:pageBlockSectionItem>
+</apex:pageBlockSection>
+
+
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

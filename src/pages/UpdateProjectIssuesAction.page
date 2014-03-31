@@ -1,0 +1,5 @@
+<apex:page standardController="Project__c">
+
+<c:IssusIntersectionComponent recordId="{!Id}" mode="Update" source="Action"/>
+
+</apex:page>

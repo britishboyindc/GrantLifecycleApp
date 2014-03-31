@@ -1,0 +1,6 @@
+<apex:page StandardController="Deliverable__c" sidebar="false" cache="false" tabstyle="Contact">
+
+<apex:sectionHeader title="Deliverables Wizard" subtitle="Step Two of Three" />
+<c:StaffParticipationComponent recordId="{!Id}" mode="NEW" nextpage="ProductWizardPIssues" source="Page"/>
+
+</apex:page>

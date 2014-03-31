@@ -1,0 +1,6 @@
+<apex:page standardController="Grant_Management__c" cache="FALSE" title="Grant Staff Update">
+
+<apex:sectionHeader title="{!Grant_Management__c.Name}" subtitle="Update Staff Participation"/>
+<c:StaffParticipationComponent recordId="{!Id}" source="Page" fieldset="Fields_for_Display_on_Grant_Component"/>
+
+</apex:page>
