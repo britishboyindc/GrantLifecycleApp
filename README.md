@@ -1,7 +1,8 @@
 Grant Lifecycle Application
 =================
 
-As part of a Force for Change grant from the Salesforce Foundation, Bridge Farm Consulting helped the Center for American Prgoress to build a new application to help them manage the grants they receive from Foundations. 
+As part of a Force for Change grant from the [Salesforce Foundation](http://www.salesforcefoundation.org), [Bridge Farm Consulting](http://www.bridgefarmconsulting.com/) helped the [Center for American Progress(http://www.americanprogress.org/) to build a new application to help them manage the grants they receive from Foundations. 
+
 The code is freely available to Non profits to use and update. 
 
 ToDo:
