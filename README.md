@@ -8,5 +8,4 @@ Add Description/Commentary to Classes/Components
 
 You can install the Unmanaged Package using [this link] (https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000PSsG)
 
-To install the repository from this repo, you can use Andrew Fawcett's tool using this link:
-https://githubsfdeploy.herokuapp.com/app/githubdeploy/britishboyindc/GrantLifecycleApp
+To install the code in this repository you can use the tool [Andrew Fawcett](http://andyinthecloud.com/) built using [this link](https://githubsfdeploy.herokuapp.com/app/githubdeploy/britishboyindc/GrantLifecycleApp)
