@@ -94,27 +94,21 @@
         <name>PermissionSet</name>
     </types>
     <types>
-        <members>New_Report</members>
-        <members>New_Report_Item</members>
-        <members>Update_Issues</members>
-        <members>Update_Issues</members>
-        <members>Update_Issues</members>
-        <members>Update_Issues</members>
-        <members>Update_Issues</members>
-        <members>Update_Issues</members>
-        <members>Update_Staff</members>
-        <members>Update_Staff</members>
-        <members>Update_Staff</members>
-        <members>Update_Staff</members>
-        <members>Update_Staff</members>
-        <members>Update_Staff</members>
+        <members>*</members>
         <name>QuickAction</name>
     </types>
     <types>
+        <members>Grant_Lifecycle</members>
+        <members>Grant_Lifecycle/Grant_Reports_Due</members>
+        <members>Grant_Lifecycle/Issue_Inline_Report</members>
+        <members>Grant_Lifecycle/Issue_Inline_Report_2</members>
+        <members>Grant_Lifecycle/Issues_Directory</members>
         <members>Grant_Lifecycle/Press_Clips_Print</members>
         <members>Grant_Lifecycle/Press_Clips_Radio</members>
         <members>Grant_Lifecycle/Press_Clips_TV</members>
         <members>Grant_Lifecycle/Projects_Ending_in_Next_3_Months</members>
+        <members>Grant_Lifecycle/accounting_data_by_project</members>
+        <members>unfiled$public</members>
         <name>Report</name>
     </types>
     <types>

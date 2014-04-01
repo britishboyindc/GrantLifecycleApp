@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Grant_Management__c$Name</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r$Name</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Name</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Report_Writer__c</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Reviewer__c</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Status__c</field>
+    </columns>
+    <columns>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Short_Description__c</field>
+    </columns>
+    <description>Focuses on grant reviewer due dates.  Pulls complete details on the various milestones and report items for each grant.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Month</dateGranularity>
+        <field>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Date_Due_to_Reviewer__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Grant Reports Due</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Grant_Management_with_Grant_Reporting_with_Grant_Reports__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Grant_Management__c.Grant_Reports__r.Grant_Reports__r$Date_Due_to_Reviewer__c</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>
