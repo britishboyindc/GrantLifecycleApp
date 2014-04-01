@@ -681,6 +681,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.Revenue_Class__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity_Code__c.Allocated_to_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>

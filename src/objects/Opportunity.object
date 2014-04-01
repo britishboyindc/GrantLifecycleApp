@@ -109,6 +109,25 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+    <fields>
+        <fullName>Revenue_Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue Class</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Restricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unrestricted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <webLinks>
         <fullName>Create_Grant_Record</fullName>
         <availability>online</availability>
