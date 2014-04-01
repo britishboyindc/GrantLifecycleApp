@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Contact_ID__c</fullName>
+        <description>Put the Contact Id of this user&apos;s staff Contact record into this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Put the Contact Id of this user&apos;s staff Contact record into this field.</inlineHelpText>
+        <label>Contact ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

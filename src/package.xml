@@ -26,9 +26,13 @@
         <members>Contact.gm_Related_User_Record__c</members>
         <members>Opportunity.Development_Lead__c</members>
         <members>Opportunity.Final_Report_Due__c</members>
+        <members>Opportunity.Fund__c</members>
+        <members>Opportunity.Grant_Period_End__c</members>
+        <members>Opportunity.Grant_Period_Start__c</members>
         <members>Opportunity.Grant_Provisions__c</members>
         <members>Opportunity.Lead_Staff__c</members>
         <members>Opportunity.Reporting_Requirements__c</members>
+        <members>User.Contact_ID__c</members>
         <name>CustomField</name>
     </types>
     <types>

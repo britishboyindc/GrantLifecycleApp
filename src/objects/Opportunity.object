@@ -40,6 +40,45 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Fund__c</fullName>
+        <externalId>false</externalId>
+        <label>Fund</label>
+        <picklist>
+            <picklistValues>
+                <fullName>c3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>c4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Period_End__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>End date of grant period.</inlineHelpText>
+        <label>Grant Period: End</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Period_Start__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Start date of grant period.</inlineHelpText>
+        <label>Grant Period: Start</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Grant_Provisions__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Any notes about the grant requirements other than reporting.</inlineHelpText>

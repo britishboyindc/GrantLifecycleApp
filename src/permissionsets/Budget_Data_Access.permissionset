@@ -651,6 +651,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Opportunity.Fund__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Grant_Period_End__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Opportunity.Grant_Period_Start__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Opportunity.Grant_Provisions__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -972,6 +987,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Staff_Participation__c.Role__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>User.Contact_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <label>Budget Data Access</label>
