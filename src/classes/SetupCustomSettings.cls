@@ -32,6 +32,8 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* This is an unmanaged package, so no install scripts, but this powers a page where user 
+* can quickly insert default vales into required custom settings 
 */
 
 public with sharing class SetupCustomSettings {

@@ -32,6 +32,8 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* we store departments in a custom object, and link 'staff' Contact records to the records so we can query/report by the department values
+* Utility to make that data easier to reference/querty by
 */
 
 public with sharing class DepartmentUtility {
@@ -43,26 +45,34 @@ private Map<String, Department__c> DepartmentCodeMap;
 private Map<String, Id> DepartmentNameMap;
 
 
-public departmentUtility(Boolean bRollUp) {
+//Constructor when user explicitly decides if they want to use parent rollup as a feature
+//Parent Rollup enables searches to include all records for the parent department of a contact
+public DepartmentUtility(Boolean bRollUp) {
 
         ChildDepartmentQueryMap = new Map<String, String []> ();
 
         buseRollup = bRollUp;
+
+//If they request a rollup, we bring back parent/chld data based on lookup on Department record
         if (buseRollup) {
-        squery = 'Select Id, Name, Code__c , Policy_Dept__c, (Select Id, Name, Policy_Dept__c From ChildDepartments__r ORDER BY NAME ASC) From Department__c  WHERE Parent_Department__c = NULL ORDER BY NAME ASC';
+            squery = 'Select Id, Name, Code__c , Policy_Dept__c, (Select Id, Name, Policy_Dept__c From ChildDepartments__r ORDER BY NAME ASC) From Department__c  WHERE Parent_Department__c = NULL ORDER BY NAME ASC';
         }
+//Otherwise, only bring back data where it is NOT a rollup Department record
+
         else {
-        squery = 'Select Id, Name, Code__c From Department__c  WHERE Roll_Up_Department__c = FALSE ORDER BY NAME ASC';
+            squery = 'Select Id, Name, Code__c From Department__c  WHERE Roll_Up_Department__c = FALSE ORDER BY NAME ASC';
         }   
         DepartmentList = new List<Department__c> ();
         DepartmentList = database.query(squery);
     }
 
+//Also provide simple consstrutor where you just need a list of departments
 public departmentUtility() {
        DepartmentList = new List<Department__c> ();
        DepartmentList = [Select Id, Name, Code__c From Department__c ORDER BY Name ASC];
     }
-    
+
+//Budget/Actual reports reference department codes - we use this mapping to translate back to readable dept name    
 public Map<String, Department__c> getCodeMap () {
     
     if (DepartmentCodeMap == null) {
@@ -78,6 +88,7 @@ public Map<String, Department__c> getCodeMap () {
 return DepartmentCodeMap;
 }
 
+//Map department names back to their orginal id for easier searching/retrieval
 public Map<String, Id> getNameMap () {
     if (DepartmentNameMap == NULL) {
         DepartmentNameMap = new Map<String, Id> ();
@@ -89,20 +100,21 @@ public Map<String, Id> getNameMap () {
 
 return DepartmentNameMap;
 }
-    
+
+//Generate pre-built select lists for department data    
 public List<SelectOption> getDepartmentSelectList(Boolean bIncludeSelect, String sValue) {
 
 List<String> PolicyDepts = new List<String> ();
 List<String> NonPolicyDepts = new List<String> ();
-    
-
 
 List<SelectOption> depts = new  List<SelectOption>();
 
+//enable calling code to decdie if a Select option should be included at top of list
 if (bIncludeSelect) {
     depts.add(new SelectOption('All', sValue));
 }
 
+//group policy deparments first in list, since those contacts more likely to be ones user wants
         for (Department__c d: DepartmentList) {
 
                 if (d.Policy_Dept__c) {
@@ -112,21 +124,21 @@ if (bIncludeSelect) {
                     NonPolicyDepts.add(d.Name);
                 }
 
-                if (buseRollup && d.ChildDepartments__r.size() > 0) {
                 //Create a querymap for INCLUDES querys on child departments since stored as Strings
-                List<String> ChildDepartments = new List<String> (); 
-                    for (Department__c dchild: d.ChildDepartments__r) {
-                        ChildDepartments.add('\'' + String.escapeSingleQuotes(dchild.Name) + '\'');
-                        
-                        if (dchild.Policy_Dept__c) {
-                           PolicyDepts.add(dchild.Name);
+                if (buseRollup && d.ChildDepartments__r.size() > 0) {
+                    List<String> ChildDepartments = new List<String> (); 
+                        for (Department__c dchild: d.ChildDepartments__r) {
+                            ChildDepartments.add('\'' + String.escapeSingleQuotes(dchild.Name) + '\'');
+                            
+                            if (dchild.Policy_Dept__c) {
+                               PolicyDepts.add(dchild.Name);
+                            }
+                            else {
+                                NonPolicyDepts.add(dchild.Name);
+                            }
                         }
-                        else {
-                            NonPolicyDepts.add(dchild.Name);
-                        }
-                    }
-                
-                    ChildDepartmentQueryMap.put(String.escapeSingleQuotes(d.name), ChildDepartments);
+                    
+                ChildDepartmentQueryMap.put(String.escapeSingleQuotes(d.name), ChildDepartments);
                     
                 }
         }
@@ -148,6 +160,7 @@ if (bIncludeSelect) {
 
 public String getDeptSearchString (String sParent, String sFieldClause) {
 
+//If we are using Child deaprtments, the search SOQL needs to be an includes
 String [] childquery; 
 String sDepartmentQuery = sFieldClause;
 
@@ -159,6 +172,7 @@ if (childquery == null) {
     sDepartmentQuery += ' (\'' + sParent + '\') ';
     }
 
+//so where they are child depts, loop through and create an Includes('x', 'y') clause
 else {
     sDepartmentQuery += ' (';
         for (String s: childquery) {

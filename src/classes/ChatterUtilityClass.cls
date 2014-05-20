@@ -32,6 +32,7 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* Class to enable Chatter Attachments to be displayed for an Object, and then be shared with a target object 
 */
 
 public with sharing class ChatterUtilityClass {
@@ -42,9 +43,10 @@ public ChatterUtilityClass() {
         feeda = new List<AttachmentWrapper> ();
 }
 
-    public void getAttachments(Id SourceRecordId) {
+//Retrieve all item in Feed into feeditem page using ConnectAPI
+public void getAttachments(Id SourceRecordId) {
       ConnectApi.FeedItemPage fip = ConnectApi.ChatterFeeds.getFeedItemsFromFeed(null, ConnectApi.FeedType.Record, SourceRecordId) ;
-
+      //Loop through feeditems and identify attachments and add to wrapper class
         for (ConnectApi.FeedItem fit : fip.items) {
             if (fit.Type == ConnectApi.FeedItemType.ContentPost) {
                 feeda.add( new AttachmentWrapper( (ConnectApi.ContentAttachment)fit.attachment));
@@ -52,14 +54,17 @@ public ChatterUtilityClass() {
         }
     }
 
+///Share selected attachments with target Id
 public void setupAttachmentstoShare (Id TargetRecordId) {
 
+//Loop through wrapper for selected items
 for (AttachmentWrapper aw: feeda) {
 
     if (aw.bInclude) {
         ConnectApi.ContentAttachmentInput cai = new ConnectApi.ContentAttachmentInput();
         cai.contentDocumentId = aw.sourceca.Id;
-        
+      
+        //Create new Feed Item Input and then post to Feed in Target Object  
         ConnectApi.FeedItemInput input = new ConnectApi.FeedItemInput();
         input.attachment = cai;
         input.visibility = ConnectApi.FeedItemVisibilityType.InternalUsers; 
@@ -75,7 +80,7 @@ for (AttachmentWrapper aw: feeda) {
 }
 
 
-
+//Simple wrapper with Boolean to enable Selection of displayed Chatter Attachments
     public class AttachmentWrapper {
         public Boolean bInclude {get;set;}
         public ConnectApi.ContentAttachment sourceca {get;set;}

@@ -32,19 +32,23 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* Along with Staff, Issues are core to a think tank' soperations, so we provide utility to add issues to any parent object
+* code powers a component that can be added to any VF page to display issues for Id of the calling object
+* Issue Intersection can have lookups to many parents, so we can reports on issues across different objects via single report
+* Issues can have parent groupings, and multiple taxonomys e.g. Issues, Actions, Priorities - set in Custom Setting
+* Update can be via page or publisher action
 */
 
 public with sharing class IssuesIntersectionController {
 
 //Page Attributes
-public Id objectId {get;set;}
-public String sNextPage {get;set;}
-public String sMode {get;set;}
-public String sSource {get;set;}
+public Id objectId {get;set;} //Id of record to be updated
+public String sNextPage {get;set;} //if set, user will naviage to page name; otherwise back to detail page of source id
+public String sMode {get;set;} //diferent hbehavior for new vs update
+public String sSource {get;set;} //action vs vf page
 
 //If we include a source for settings defaults
 public Id sourcerecordId {get;set;}
-
 
 private Boolean bInitialState;
 public Boolean bPosted {get;set;}
@@ -55,23 +59,19 @@ private Set<Id> IssueIntersectionIds;
 private List<Issue_Intersection__c> deleteIssues; 
 private Map<String, List<Issue__c> > NewIssueMap;
 
-private Map<Id, Issue__c> ChildIssueMap;
-
-public List<Issue__c> newIssuesforSelection {get;set;} 
-
-private Map<Id, issueselectionwrapper> issueMap;    
-
+//Issues can be split into multiple taxonomies - each then appear in separate section on page 
 private List<String> TaxonomySections;
-
 public List<issueselectionwrapper> IssuesIntersectionWrapper;  
-
 public Map<String, List<issueselectionwrapper> > TaxonomySectionMap {get;set;}
 
+//Issue Category Selection to enable filtering by Parent Issue
 public List<SelectOption> cIssues {get;set;}
+private Map<Id, Issue__c> ChildIssueMap;
+public List<Issue__c> newIssuesforSelection {get;set;} 
+private Map<Id, issueselectionwrapper> issueMap;    
 
 private DepartmentUtility DU;
-
-public Id cIssueId {get;set;}
+public Id cIssueId {get;set;} //page assignment variable
 
 //Constructor
 public IssuesIntersectionController() {
@@ -93,7 +93,7 @@ public IssuesIntersectionController() {
 }
 
 
-
+//Updated when parent issue category select is updated
 public PageReference search() {
 
 newIssuesforSelection.clear();
@@ -108,7 +108,7 @@ for (Integer i = 0; i < IssueMapLoop.size() ; i++) {
 return null;
 }
 
-
+//For updates, retrieve current selected issues
 public void retrieveCurrentIssues() {
     
     recordFieldDetails = getIUSSettings (identifySourceObject(objectId) );
@@ -117,7 +117,7 @@ public void retrieveCurrentIssues() {
     if (recordFieldDetails != null) {
     
     String sQuery = 'SELECT Issue__c, Object__c, Record_Name__c, Default_for_Related_Item__c, ';
-    
+    //Identify lookup field to include for object id passed into component and also filter by it
         sQuery += recordFieldDetails.Issue_Intersection_Field__c + ',';
         sQuery += ' Id FROM Issue_Intersection__c ';
         sQuery += ' WHERE  ' + recordfielddetails.Issue_Intersection_Field__c + ' = :objectId';
@@ -125,14 +125,13 @@ public void retrieveCurrentIssues() {
          
     List<Issue_Intersection__c> iirs = database.query(sQuery);    
 
-
+//Identify currently selected issues so they don't appear in select lists
     for (Issue_Intersection__c issueir : iirs ) {
         Issue__c newIssue = ChildIssueMap.get(issueir.Issue__c);  
         issueMap.put(newIssue.Id, new issueselectionwrapper( issueir, newIssue));
     
         }
-    //search();
-    createDisplayMap();  
+    createDisplayMap(); //to enable taxonomy functionality 
     }
 
 }
@@ -142,11 +141,11 @@ public List<String> getTaxonomySections() {
 if (bInitialState == TRUE) {
     
         if (sMode == 'UPDATE' || sMode== 'UPDATEWITHDEFAULT') {
-            retrieveCurrentIssues();
+            retrieveCurrentIssues(); //update mode so get current issues
         }
        
         else if (sMode == 'NEWWITHDEFAULT') {
-            getDefaultIssues();
+            getDefaultIssues(); //new with default allows default issues from a source object - e.g. opty to grant
         }
     
 }
@@ -157,13 +156,13 @@ return TaxonomySections;
 
 }
 
-//List<issueselectionwrapper> tmap = TaxonomySectionMap.get(newIssue.Taxonomy__c);
-
+//User selects an issue on page
 public PageReference setSelectedIssue(){
     
     String issueId = ApexPages.currentPage().getParameters().get('cid');
     Issue__c newIssue = ChildIssueMap.get(issueId);
     
+    //Create new record for page wrapper
     sObject so = new Issue_Intersection__c();
     so.put('Issue__c', newIssue.Id);
     so.put('Object__c',  'Current');
@@ -175,20 +174,20 @@ public PageReference setSelectedIssue(){
    
     List<issueselectionwrapper> templist = TaxonomySectionMap.get(newIssue.Taxonomy__c);
     templist.add(iinew);
-    TaxonomySectionMap.put(newIssue.Taxonomy__c, templist);
-
+    TaxonomySectionMap.put(newIssue.Taxonomy__c, templist); //add to display map to make sure taxonmy section display correctly
+    //refresh search so refelct newly selcted issue
     if (cIssueId != NULL) { 
         search();
     }
     return null;
 }  
 
-   
+//delete an issue but make available to add back in case removed in error   
 public PageReference removeselectedissue(){
     String issueId = ApexPages.currentPage().getParameters().get('rcid');
    
     if (issueMap.containskey(issueid)) {
-        
+        //if already in db, add to deletion processing
         if (issueMap.get(issueid).issueintersection.Id != null) {//already committed to db    
               deleteIssues.add(issueMap.get(issueid).issueintersection);
         }
@@ -214,11 +213,11 @@ return cancelupdate();
 if (processSelected() ) { 
 
     PageReference newpage;
-        if (sNextPage != null) {
+        if (sNextPage != null) {//if next page included, navaigate user there
             newpage = new PageReference('/apex/' + sNextPage + '?Id=' + objectId);
         }
         else {
-            newpage =  new PageReference('/' + objectId);
+            newpage =  new PageReference('/' + objectId);//otherwise, back to detail page
         }
         newpage.SetRedirect(TRUE);
             return newpage;
@@ -231,7 +230,7 @@ if (processSelected() ) {
 
 public pageReference processAction() {
     processSelected();
-    bPosted = TRUE;
+    bPosted = TRUE; //for publisher action refresh
 return null;
 }
 
@@ -241,8 +240,8 @@ newpage.SetRedirect(TRUE);
 return newpage;
 }
 
+//loop through wrapper and add new issues
 private Boolean processSelected(){
-
 List<Issue_Intersection__c> issuesforintersection = new List<Issue_Intersection__c> ();
 
 sObject so; 
@@ -256,7 +255,7 @@ sObject so;
     
     try {
         upsert issuesforintersection;
-        delete deleteIssues;  
+        delete deleteIssues;  //process deletions
     return TRUE;
     }
     
@@ -267,7 +266,7 @@ sObject so;
 
 }
 
-
+//for deliverables, we provide ability to get defults from many sources (Project, grant, user, departments)
 public void getDefaultIssues () {
 
      
@@ -308,7 +307,7 @@ public void getDefaultIssues () {
                         }
                    
                     }
-                
+                //retrieve all default issues based on Ids identified
                     for (Issue_Intersection__c iis: [Select Id, Record_Name__c, Object__c, 
                                                         Issue__r.Name, Issue__r.Taxonomy__c, 
                                                         Deliverable__c from  Issue_Intersection__c 
@@ -334,6 +333,7 @@ public void getDefaultIssues () {
 
 } //end getDefaultIssues
 
+//Issus have parent/child relationship - select parent and see child issues to select from
 public void setupSelectOptions () {
     NewIssueMap = new Map<String, List<Issue__c> > ();
     ChildIssueMap = new Map<Id, Issue__c> ();
@@ -344,7 +344,7 @@ public void setupSelectOptions () {
         
             if (issues.Issues__r.size() > 0) {
                     cIssues.add(new SelectOption(issues.Id, issues.Name));
-                    NewIssueMap.put(issues.Id, issues.Issues__r);
+                    NewIssueMap.put(issues.Id, issues.Issues__r);//store in map for easy retrieval when adding
                         for (Issue__c ichildissue: issues.Issues__r) {
                             ChildIssueMap.put(ichildissue.Id, ichildissue);
                         }
@@ -353,6 +353,7 @@ public void setupSelectOptions () {
     
 }
 
+//Split issues into taxonomy sections on page
 private void createDisplayMap () {
 
    TaxonomySectionMap = new Map<String, List<issueselectionwrapper> > ();
@@ -370,6 +371,7 @@ private void createDisplayMap () {
 
 }
 
+//Use wrapper so we can identify issue and information from issue intersection such as source
 public class issueselectionwrapper {
 
     public Issue__c issue {get;set;}
@@ -386,10 +388,12 @@ private Schema.Sobjecttype identifySourceObject(Id recordId) {
 return recordId.getSObjectType();
 }
 
+//get details of lookups from Custom Setting so we can map object id to it's lookup
 private Issue_Utility_Settings__c getIUSSettings (Schema.Sobjecttype sourcetype) {
 return Issue_Utility_Settings__c.getValues(sourcetype.getDescribe().getName());
 }
 
+//if not mapping in custom setting, throw error
 private void setupRecordFields() {
 
     if (recordFieldDetails == NULL) {

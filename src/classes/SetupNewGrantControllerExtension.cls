@@ -32,6 +32,8 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* Class to setup reporting requirements for a grant, once opty converted to grant record
+* A grant can have multiple report milestones, each with multiple items due on certain dates
 */
 
 public with sharing class SetupNewGrantControllerExtension {
@@ -70,6 +72,8 @@ private Contact cuser;
         }
 
 /* Page 3 Report Setup Code */
+//Most grants will have at least two milestones - interim and final, with budget and narrative
+//We set defaults for dates as well - so the user has a starting point
 
   public PageReference setupReports() {
     grw = new List<GrantReportWrapper> ();
@@ -82,6 +86,7 @@ private Contact cuser;
     return null;  
   }  
   
+  //When user inserts report milestones, create items for each based on selection in wrapper
   public PageReference insertGrantReports() {
     List<Grant_Reporting_Requirement__c> grrlist = new List<Grant_Reporting_Requirement__c> ();
     List<Grant_Report_Detail__c> grdlist = new List<Grant_Report_Detail__c> ();
@@ -97,6 +102,7 @@ private Contact cuser;
     
     for (GrantReportWrapper gw: grw) {
     
+    //User can also de-select milestone and default items, so only create when checked
     if (gw.bCreate) {
 
         if (gw.bBudgetReport) {
@@ -114,6 +120,7 @@ private Contact cuser;
     insert grdlist;
     
     //Now put them all in a map for easy viewing
+    //User can click on milestone and see/add related items
     for (Grant_Report_Detail__c grnew: grdlist) {
     
        if (ReportDetails.containskey(grnew.Grant_Reporting__c) ) {
@@ -134,68 +141,20 @@ private Contact cuser;
     }
     
      
-  
-  public PageReference addNewGrantReport() {
+ 
+ //create new Grant Report record e.g. new interim report with items 
+ public PageReference addNewGrantReport() {
     grw.add(new GrantReportWrapper(gm.Id, 'Interim', system.today()) );
     bshownewgr = TRUE;
     return null;
   }
    
-   
-  /*
-  public pageReference setupReportDetails() {
-       system.debug(ReportId);
-        if (ReportId != null) {
-        ReportName = 'Reports for ' +  grrmap.get(ReportId).Due_Date__c.format();
-            if (ReportDetails.containskey(ReportId) ) {
-                currentreportdetails = ReportDetails.get(ReportId);
-            }
-            if (currentreportdetails.size() > 0) {
-                return null;
-                bshownewgrd = FALSE;
-            }
-            else {
-                return newReportDetail();
-            }
-            }
-       
-       bshownewgrdetails = TRUE;
-       return null;
-    }
-*/
-
-    /*
-    public pageReference updateReportDetails() {
-    upsert currentreportdetails;
-    return null;
-    }
-
-    public pageReference newReportDetail() {
-    currentreportdetails.add(new Grant_Report_Detail__c(Grant_Reporting__c = ReportId, Date_Due_to_Reviewer__c = grrmap.get(ReportId).Due_Date__c.adddays(-15)));
-    return null;
-    }
-
-    public pageReference insertnewReportDetails() {
-    insert newgrd;
-    currentreportdetails.add(newgrd);
-    ReportDetails.put(ReportId, currentreportdetails);
-    getGrantReportDetails();
-    
-    return null;
-    }
-    
-    public List<Grant_Report_Detail__c> getGrantReportDetails() {
-    //setupReportDetails();
-    return currentreportdetails;
-    }
-    */
-        
-    public pageReference gotoGrant() {
+ //direct user to newly created grant  
+ public pageReference gotoGrant() {
     return new ApexPages.StandardController(gm).view();
     }
     
-    
-
+//New report milestones often require budegt and narrative by default, so make them easy to select/remove on page via wrapper   
 public class GrantReportWrapper {
 
 public Grant_Reporting_Requirement__c grr {get;set;}

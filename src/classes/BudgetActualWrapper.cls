@@ -32,6 +32,8 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* To enable budget/actual items to be displayed correctly, we use this wrapper class to receive values for Org 1 and Org 2
+* We also use the boolean display values to determine if they need to be displayed on the VF page
 */
 
 public class BudgetActualWrapper {

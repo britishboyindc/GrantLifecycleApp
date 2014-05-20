@@ -32,20 +32,27 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* Convert an opportunity to a grant using wizard
 */
 
 public with sharing class ConvertOpportunitytoGrantController {
 
+//Source Opty based on Standard Controller
 private final Opportunity opty;
+
+//Target Grant
 public Grant_Management__c gm {get;set;}
 
+//Dynamically display target grant fields for edit - section 1 for shorter fields, section 2 for long text type fields
 public List<String> GrantFields1 {get;set;}
 public List<String> GrantFields2 {get;set;}
 
+//For chatter attachment processing/sharing
 public ChatterUtilityClass ChatterUtility {get;set;}
 
 public Boolean bsaveandnew {get;set;}
 
+//Current user/contact
 private Contact cuser;
 
 // The extension constructor initializes the private member 
@@ -55,16 +62,21 @@ private Contact cuser;
         gm = new Grant_Management__c();
         setupGrant();
         ChatterUtility = new ChatterUtilityClass();
+        //get current Chatter Attachments from Opportunity
         ChatterUtility.getAttachments(this.opty.Id); 
         }
     
     public pagereference createGrantRecord () {
+          //insert grant
           insert gm;
+          //Post any shared attachments to chatter feed
           ChatterUtility.setupAttachmentstoShare(gm.Id);
           
+          //Post back on source Opportunity feed
           String sPost = 'A new Grant Record was created for this Opportunity';
           ConnectAPIHelper.postFeedItemWithMentions(null, opty.Id, sPost);
         
+          //direct to staff setup page
           PageReference gparticipate = new PageReference('/apex/GrantWizardP2?id='+gm.Id+'&sId=' + opty.Id);
           return gparticipate;
     }
@@ -74,11 +86,14 @@ private void setupGrant () {
 
 GrantFields1 = new List<String> ();
 GrantFields2 = new List<String> ();
-
+//Setup target grant fields for display
+//Fields are stored in a custom setting insteac of field set so we can map source to target
 List<Opty_Grant_Fields__c> GrantFieldList = [Select Id, Name, Grant_Field__c, Page_Order__c, Section_on_Page__c 
                                FROM Opty_Grant_Fields__c 
                                ORDER BY Section_on_Page__c, Page_Order__c];
 
+//Set up query to retrieve all target fields from source opportunity
+//and setup list of fields for page display
 String sId = opty.Id;
 String sQuery = 'Select ';
 
@@ -94,6 +109,7 @@ for (Opty_Grant_Fields__c s: GrantFieldList ) {
 
 sQuery += ' isDeleted from Opportunity WHERE Id = :sId';
 
+//set target values on grant to source values on Opty based on mapping in custom setting
 sObject optyo = database.query(sQuery);
 
    sObject gmo = gm;

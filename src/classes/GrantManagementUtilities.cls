@@ -32,6 +32,7 @@
 * @author Center for American Progress/Bridge Farm Consulting Inc
 * @date 2014 (1.x)
 * @description 
+* Utility class for functions we use in Grant Management app, mostly to map 'staffer' Contacts to users
 */
 
 Public Class GrantManagementUtilities {
@@ -41,11 +42,13 @@ private static Id currentUserContactId;
 private static Map<Id, Id> usermap; 
 private static Map<String, GrantManagementSettings__c> gmSettings;
 
+//auto include custom settings
 static{
         gmSettings = GrantManagementSettings__c.getAll();
     }
 
-//Peter C, 5/16 - add utility to look for Department Field in a c/s
+
+//Department lookup field can be set by user, so includ eutility to retrieve for SOQL
 public static String getContactDepartment() {
 if  (ContactDepartmentField == NULL) {
        ContactDepartmentField = getSettingValue('ContactDepartment'); 
@@ -53,6 +56,7 @@ if  (ContactDepartmentField == NULL) {
 return ContactDepartmentField;
 }
 
+//Pass in last of Staffer Contacts, and get back user ids for those contacts 
 public static Map<Id, Id> getUserMapfromContactRecord(Set<Id> ContactIds) {
 
 if (usermap == NULL) {
@@ -74,6 +78,7 @@ return usermap;
 
 }
 
+//If we know the user, is there also a contact staff record?
 public static Contact getloggedinusercontactbyuserid() {
 
 //Get Department Field from Contact
@@ -95,6 +100,7 @@ if (cons.size() > 0) {
 return null;
 }
 
+//We also store the staffer contact id on user record 
 public static Id getloggedinusercontactid() {
     if (currentUserContactId == null) {
    String sContactField = getSettingValue('ContactIdFieldonUser');
@@ -112,6 +118,7 @@ public static Id getloggedinusercontactid() {
         return currentUserContactId;
 }    
 
+//simple way to retrieve custom setting value
 private static String getSettingValue (String sKey) {
 String s;
 
