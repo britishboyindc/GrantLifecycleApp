@@ -6,7 +6,7 @@ As part of a Force for Change grant from the [Salesforce Foundation](http://www.
 The code is freely available to Non profits to use and update. 
 
 ToDo:
-*Add Description/Commentary to Classes/Components
+*Add Description/Commentary to Budget/Actual Classes
 
 You can install the Unmanaged Package using [this link] (https://login.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000PSsk)
 
