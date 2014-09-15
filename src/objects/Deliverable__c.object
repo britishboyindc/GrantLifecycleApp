@@ -309,6 +309,15 @@
         <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
         <label>Project</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Project__c.Closed__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </filterItems>
+            <isOptional>true</isOptional>
+        </lookupFilter>
         <referenceTo>Project__c</referenceTo>
         <relationshipLabel>Deliverables</relationshipLabel>
         <relationshipName>Deliverables</relationshipName>
