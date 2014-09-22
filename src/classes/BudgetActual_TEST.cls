@@ -65,7 +65,7 @@ private class BudgetActual_TEST {
     PageReference pageRef = Page.BudgetvsActual;
     Test.setCurrentPage(pageRef);
     BudgetActualController bfc = new BudgetActualController(new ApexPages.StandardController(testProject)); 
-    system.assertequals('/apex/bvapermissioncheck', bfc.confirmaccess().geturl());
+    system.assertequals('/apex/npsprep_df14_1__bvapermissioncheck', bfc.confirmaccess().geturl());
     system.assertequals(FALSE, bfc.bUserHasAccess);
     }
     

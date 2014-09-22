@@ -3,9 +3,4 @@
     <apiVersion>29.0</apiVersion>
     <description>Formats negative numbers w/ parentheses, instead of a minus sign.</description>
     <label>Budget Actual Output</label>
-    <packageVersions>
-        <majorNumber>1</majorNumber>
-        <minorNumber>5</minorNumber>
-        <namespace>sf_com_apps</namespace>
-    </packageVersions>
 </ApexComponent>

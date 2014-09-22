@@ -79,7 +79,7 @@
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Department__c.Update_Issues</quickActionName>
+            <quickActionName>npsprep_df14_1__Department__c.Update_Issues</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>

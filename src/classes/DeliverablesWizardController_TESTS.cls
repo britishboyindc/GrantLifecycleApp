@@ -87,7 +87,7 @@ List<Deliverable__c> testdeliverables = [Select Id, Project__c FROM Deliverable_
 system.assertequals(1, testdeliverables.size());
 system.assertequals(testProject.Id, testdeliverables[0].Project__c);
 
-String sCompare = '/apex/ProductWizardP2?Id='+testdeliverables[0].Id;
+String sCompare = '/apex/npsprep_df14_1__ProductWizardP2?Id='+testdeliverables[0].Id;
 system.assertEquals(sCompare, sURL);  
 
 

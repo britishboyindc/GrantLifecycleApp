@@ -90,7 +90,7 @@
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Grant_Reporting_Requirement__c.New_Report_Item</quickActionName>
+            <quickActionName>npsprep_df14_1__Grant_Reporting_Requirement__c.New_Report_Item</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>

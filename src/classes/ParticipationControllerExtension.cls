@@ -267,7 +267,7 @@ private void setupRecordFields() {
     //if specific field name set passed in, get fields
     Schema.DescribeSObjectResult r = Staff_Participation__c.sObjectType.getDescribe();
         if (sFieldSet == NULL) {
-            sFieldSet = 'Fields_for_Display_on_Component';
+            sFieldSet = 'npsprep_df14_1__Fields_for_Display_on_Component';
         }
     resultFields = r.FieldSets.getMap().get(sFieldSet).getFields();
     }  

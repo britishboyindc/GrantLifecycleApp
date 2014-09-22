@@ -90,8 +90,8 @@ if (bClear) {
 }
 
 pcesettings = new List<ParticipationControllerSettings__c> ();  
-pcesettings.add(new ParticipationControllerSettings__c (Name = 'Opportunity', Staff_Participation_Field__c = 'Opportunity__c'));
-pcesettings.add(new ParticipationControllerSettings__c (Name = 'Grant_Management__c', Staff_Participation_Field__c = 'Grant_Management__c'));
+pcesettings.add(new ParticipationControllerSettings__c (Name = 'Opportunity', Staff_Participation_Field__c = 'npsprep_df14_1__Opportunity__c'));
+pcesettings.add(new ParticipationControllerSettings__c (Name = 'npsprep_df14_1__Grant_Management__c', Staff_Participation_Field__c = 'npsprep_df14_1__Grant_Management__c'));
 insert pcesettings;
 }
 
@@ -106,9 +106,9 @@ if (bClear) {
 
 gm = new List<GrantManagementSettings__c>();
 gm.add(new GrantManagementSettings__c(Name = 'OurAccountId', Id_Value__c = AccountId));
-gm.add(new GrantManagementSettings__c(Name = 'ContactDepartment', String_Value__c = 'gm_Department_Reference__c'));
-gm.add(new GrantManagementSettings__c(Name = 'ContactIdFieldonUser', String_Value__c = 'Contact_ID__c'));
-gm.add(new GrantManagementSettings__c(Name = 'UserFieldonContact', String_Value__c = 'gm_Related_User_Record__c'));
+gm.add(new GrantManagementSettings__c(Name = 'ContactDepartment', String_Value__c = 'npsprep_df14_1__gm_Department_Reference__c'));
+gm.add(new GrantManagementSettings__c(Name = 'ContactIdFieldonUser', String_Value__c = 'npsprep_df14_1__Contact_ID__c'));
+gm.add(new GrantManagementSettings__c(Name = 'UserFieldonContact', String_Value__c = 'npsprep_df14_1__gm_Related_User_Record__c'));
 gm.add(new GrantManagementSettings__c(Name = 'PostLeadStaffertoChatter', Boolean_Value__c = TRUE));
 
 
@@ -125,12 +125,12 @@ if (bClear) {
 }
 
 ogf = new List<Opty_Grant_Fields__c>();
-ogf.add (new Opty_Grant_Fields__c(Name = 'Id', Grant_Field__c = 'Source_Opportunity__c', Page_Order__c = 1, Section_on_Page__c = 1));
+ogf.add (new Opty_Grant_Fields__c(Name = 'Id', Grant_Field__c = 'npsprep_df14_1__Source_Opportunity__c', Page_Order__c = 1, Section_on_Page__c = 1));
 ogf.add (new Opty_Grant_Fields__c(Name = 'Name', Grant_Field__c = 'Name', Page_Order__c = 1, Section_on_Page__c = 1));
-ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Period_Start__c', Grant_Field__c = 'Grant_Start_Date__c', Page_Order__c = 1, Section_on_Page__c = 1));
-ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Period_End__c', Grant_Field__c = 'Grant_End_Date__c', Page_Order__c = 1, Section_on_Page__c = 1));
+ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Period_Start__c', Grant_Field__c = 'npsprep_df14_1__Grant_Start_Date__c', Page_Order__c = 1, Section_on_Page__c = 1));
+ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Period_End__c', Grant_Field__c = 'npsprep_df14_1__Grant_End_Date__c', Page_Order__c = 1, Section_on_Page__c = 1));
 
-ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Provisions__c', Grant_Field__c = 'Grant_Provisions__c', Page_Order__c = 20, Section_on_Page__c = 2));
+ogf.add (new Opty_Grant_Fields__c(Name = 'Grant_Provisions__c', Grant_Field__c = 'npsprep_df14_1__Grant_Provisions__c', Page_Order__c = 20, Section_on_Page__c = 2));
 
 
 insert ogf;
@@ -185,7 +185,7 @@ if (bClear) {
 }
 
 issuesettings = new List<Issue_Utility_Settings__c>();
-issuesettings.add (new Issue_Utility_Settings__c(Name = 'Deliverable__c', Issue_Intersection_Field__c  = 'Deliverable__c'));
+issuesettings.add (new Issue_Utility_Settings__c(Name = 'npsprep_df14_1__Deliverable__c', Issue_Intersection_Field__c  = 'npsprep_df14_1__Deliverable__c'));
 issuesettings.add (new Issue_Utility_Settings__c(Name = 'TaxonomyStrings', String_Value__c  = 'Issue;'));
 
 insert issuesettings;

@@ -275,7 +275,7 @@ public void getDefaultIssues () {
         
         if (recordFieldDetails != null) {  
             
-            if (recordfielddetails.Issue_Intersection_Field__c == 'Deliverable__c' ) {
+            if (recordfielddetails.Issue_Intersection_Field__c == 'npsprep_df14_1__Deliverable__c' ) {
                     Set<Id> IssueIntersectionIds = new Set<Id> ();
                     
                     Deliverable__c prod = [Select Id, Name, Project__c, Departments__c, 

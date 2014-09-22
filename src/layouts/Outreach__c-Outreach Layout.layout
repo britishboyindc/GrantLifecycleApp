@@ -103,10 +103,10 @@
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Outreach__c.Update_Issues</quickActionName>
+            <quickActionName>npsprep_df14_1__Outreach__c.Update_Issues</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Outreach__c.Update_Staff</quickActionName>
+            <quickActionName>npsprep_df14_1__Outreach__c.Update_Staff</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>
