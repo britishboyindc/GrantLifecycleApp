@@ -50,6 +50,8 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>Amount_of_Grant_Awarded__c</fullName>
         <defaultValue>0</defaultValue>
