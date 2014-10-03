@@ -1,15 +1,17 @@
-#!/bin/bash -x
+#!/bin/bash
 
 BASEDIR=`pwd`
 
 # Checkout the CumulusCI repository
 if [ -d ../CumulusCI ]; then
     cd ../CumulusCI
-    git pull
+    git fetch --all
     git checkout feature/13-codeship-integration
+    git pull
 else
     git clone https://github.com/SalesforceFoundation/CumulusCI ../CumulusCI
     cd ../CumulusCI
+    git fetch --all
     git checkout feature/13-codeship-integration
 fi
 
