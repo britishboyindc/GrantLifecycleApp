@@ -28,6 +28,7 @@
     <members>SetupCustomSettings</members>
     <members>SetupNewGrantControllerExtension</members>
     <members>TestDataFactory_TEST</members>
+    <members>UTIL_Namespace</members>
     <name>ApexClass</name>
   </types>
   <types>
@@ -409,7 +410,9 @@
   </types>
   <types>
     <members>ADLData811</members>
+    <members>ADLData811_managed</members>
     <members>AccountingTestData1</members>
+    <members>AccountingTestData1_managed</members>
     <name>StaticResource</name>
   </types>
   <types>
@@ -468,5 +471,5 @@
     <members>Issue_Intersection__c.II - Record Name Populate %28Project%29</members>
     <name>WorkflowRule</name>
   </types>
-  <version>30.0</version>
+  <version>31.0</version>
 </Package>

@@ -156,7 +156,7 @@
             <quickActionName>FeedItem.LinkPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>npsprep_df14_1__Grant_Management__c.Update_Staff</quickActionName>
+            <quickActionName>Grant_Management__c.Update_Staff</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedLists>

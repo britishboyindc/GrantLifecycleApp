@@ -65,7 +65,7 @@ private class BudgetActual_TEST {
     PageReference pageRef = Page.BudgetvsActual;
     Test.setCurrentPage(pageRef);
     BudgetActualController bfc = new BudgetActualController(new ApexPages.StandardController(testProject)); 
-    system.assertequals('/apex/npsprep_df14_1__bvapermissioncheck', bfc.confirmaccess().geturl());
+    system.assertequals('/apex/' + UTIL_Namespace.StrTokenNSPrefix('bvapermissioncheck'), bfc.confirmaccess().geturl());
     system.assertequals(FALSE, bfc.bUserHasAccess);
     }
     
@@ -150,7 +150,11 @@ static void BudgetActualBoth() {
 
     TestDataFactory_TEST.setAccountingData();
 
-    List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'AccountingTestData1');
+    if (UTIL_Namespace.InManagedPackage) {
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'AccountingTestData1_managed');
+    } else {
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'AccountingTestData1');
+    }
     //List<sObject> testBData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'BudgetC3Data');
 
     PageReference pageRef = Page.BudgetvsActual;
@@ -288,8 +292,12 @@ static void BudgetActualReportingYearTest() {
 
 
     TestDataFactory_TEST.setAccountingData();
-    
-    List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811');
+   
+    if (UTIL_Namespace.InManagedPackage) { 
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811_managed');
+    } else {
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811');
+    }
    
     PageReference pageRef = Page.BudgetvsActual;
     Test.setCurrentPage(pageRef);
@@ -413,7 +421,11 @@ static void BudgetActualReportingYearTestCompany2() {
 
     TestDataFactory_TEST.setAccountingData();
     
-    List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811');
+    if (UTIL_Namespace.InManagedPackage) { 
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811_managed');
+    } else {
+        List<sObject> testAData = Test.loadData(Accounting_Data_Load__c.sObjectType, 'ADLData811');
+    }
    
     PageReference pageRef = Page.BudgetvsActual;
     Test.setCurrentPage(pageRef);

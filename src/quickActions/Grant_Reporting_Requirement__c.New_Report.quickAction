@@ -39,7 +39,7 @@
         </quickActionLayoutColumns>
     </quickActionLayout>
     <standardLabel>New</standardLabel>
-    <targetObject>npsprep_df14_1__Grant_Report_Detail__c</targetObject>
-    <targetParentField>npsprep_df14_1__Grant_Reporting__c</targetParentField>
+    <targetObject>Grant_Report_Detail__c</targetObject>
+    <targetParentField>Grant_Reporting__c</targetParentField>
     <type>Create</type>
 </QuickAction>
