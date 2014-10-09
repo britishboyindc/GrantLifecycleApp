@@ -50,6 +50,8 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>BvA_Notes__c</fullName>
         <description>Use this field for explanatory notes to appear on budget vs. actual reports... e.g.  if some money was moved between projects.</description>
@@ -235,18 +237,6 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <namedFilters>
-        <fullName>nf_01Ii0000000yRv3EAE_00Ni000000CBqX7EAL</fullName>
-        <active>true</active>
-        <field>Deliverable__c.Project__c</field>
-        <filterItems>
-            <field>Project__c.Closed__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </filterItems>
-        <isOptional>true</isOptional>
-        <name>Deliverable_Project</name>
-    </namedFilters>
     <pluralLabel>Projects</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Department__c</customTabListAdditionalFields>
