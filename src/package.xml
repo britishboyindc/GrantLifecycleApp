@@ -409,6 +409,10 @@
     <name>Report</name>
   </types>
   <types>
+    <members>Grant_Management_with_Grant_Reporting_with_Grant_Reports</members>
+    <name>ReportType</name>
+  </types>
+  <types>
     <members>ADLData811</members>
     <members>ADLData811_managed</members>
     <members>AccountingTestData1</members>
