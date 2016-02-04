@@ -4,7 +4,8 @@ python:
 
 test_pattern: 'none'
 tests:
-  - '$CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
+  - type: custom
+    command: '$CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
 
 environment:
   CUMULUSCI_PATH: /tmp/CumulusCI
