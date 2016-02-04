@@ -1,0 +1,13 @@
+# Use Python 2.7 for scripts
+python:
+  python-version: 2.7
+
+test_pattern: 'none'
+tests:
+  - '$CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
+
+environment:
+  CUMULUSCI_PATH: /tmp/CumulusCI
+
+hooks:
+  worker_setup: 'solano/setup.sh'
