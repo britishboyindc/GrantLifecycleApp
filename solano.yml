@@ -13,6 +13,7 @@ environment:
   TEST_JSON_OUTPUT: test_results.json
   TEST_JUNIT_OUTPUT: test_results_junit.xml
 
+test-pattern: 'none'
 tests:
   - type: junit
     command: '$CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
