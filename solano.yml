@@ -17,6 +17,8 @@ test_pattern: 'none'
 tests:
   - type: custom
     command: 'unbuffer $CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
+  - type: junit
+    command: echo "parsing JUnit output"
     report_files:
     - "test_results_junit.xml"
 
