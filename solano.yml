@@ -1,6 +1,6 @@
 # Use Python 2.7 for scripts
 python:
-  python-version: 2.7
+  python_version: 2.7
 
 hooks:
   worker_setup: 'solano/setup.sh'
@@ -16,7 +16,7 @@ environment:
 test_pattern: 'none'
 tests:
   - type: custom
-    command: '$CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI | stdbuf -o L'
+    command: 'unbuffer $CUMULUSCI_PATH/ci/ant_wrapper.sh deployCI'
     report_files:
     - "test_results_junit.xml"
 
