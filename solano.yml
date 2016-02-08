@@ -10,6 +10,7 @@ hooks:
     cd CumulusCI
     git fetch --all
     git checkout features/cloud-ci-integrations
+    cd ..
     mkdir apex_debug_logs
 
 environment:
