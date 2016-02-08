@@ -19,4 +19,3 @@ You'll find lots of documentation about how to use the package in Grant Lifecycl
 
 To install the code in this repository you can use the tool [Andrew Fawcett](http://andyinthecloud.com/) built using [this link](https://githubsfdeploy.herokuapp.com/app/githubdeploy/britishboyindc/GrantLifecycleApp)
 
-[ ![Codeship Status for jlantz/GrantLifecycleApp](https://codeship.io/projects/7d6d9ab0-1f0f-0132-2def-124af54005ea/status?branch=master)](https://codeship.io/projects/35613)
