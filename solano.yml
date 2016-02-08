@@ -3,6 +3,13 @@ python:
   python_version: 2.7
   pip_requirements_file: requirements.txt
 
+system:
+  queue:
+    - branch: master
+      queue: master
+    - branch: "feature/*"
+      queue: feature
+
 hooks:
   pre_setup: |
     set -e # Exit on error
