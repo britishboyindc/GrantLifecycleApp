@@ -1,4 +1,0 @@
-simple-salesforce
-selenium
-requests
-PyGithub==1.25.1
