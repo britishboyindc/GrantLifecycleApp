@@ -32,7 +32,10 @@ test_pattern:
   - 'none'
 
 tests:
-  - cumulusci dev deploy --run-tests True
+  - type: junit
+    command: cumulusci dev deploy --run-tests True
+    report_files:
+    - "test_results_junit.xml"
 
 collect:
   repo:
