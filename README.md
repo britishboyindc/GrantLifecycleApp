@@ -18,5 +18,3 @@ You can install the Unmanaged Package using [this link] (https://login.salesforc
 You'll find lots of documentation about how to use the package in Grant Lifecycle Chatter Group in the [Power of Us Hub](https://powerofus.force.com/_ui/core/chatter/groups/GroupProfilePage?g=0F980000000CncZ)
 
 To install the code in this repository you can use the tool [Andrew Fawcett](http://andyinthecloud.com/) built using [this link](https://githubsfdeploy.herokuapp.com/app/githubdeploy/britishboyindc/GrantLifecycleApp)
-
-Test
