@@ -33,7 +33,7 @@ test_pattern:
 
 tests:
   - type: junit
-    command: cumulusci ci build_router
+    command: cumulusci build_router
     report_files:
     - "test_results_junit.xml"
 
