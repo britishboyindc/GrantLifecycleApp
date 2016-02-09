@@ -32,7 +32,7 @@ test_pattern:
   - 'none'
 
 tests:
-  - ./CumulusCI/ci/ant_wrapper.sh deployCI
+  - cumulusci dev deploy
 
 collect:
   repo:
