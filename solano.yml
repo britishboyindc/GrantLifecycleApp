@@ -1,7 +1,6 @@
 # Use Python 2.7 for scripts
 python:
   python_version: 2.7
-  pip_requirements_file: CumulusCI/requirements.txt
 
 system:
   queue:
@@ -17,6 +16,7 @@ hooks:
     cd CumulusCI
     git fetch --all
     git checkout features/cloud-ci-integrations
+    pip install -r requirements.txt
     cd ..
     mkdir apex_debug_logs
 
