@@ -32,7 +32,7 @@ test_pattern:
   - 'none'
 
 tests:
-  - cumulusci dev deploy
+  - cumulusci dev deploy --run-tests True
 
 collect:
   repo:
