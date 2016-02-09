@@ -1,0 +1,43 @@
+# Use Python 2.7 for scripts
+python:
+  python_version: 2.7
+
+system:
+  queue:
+    - branch: master
+      queue: master
+    - branch: "feature/*"
+      queue: feature
+
+hooks:
+  pre_setup: |
+    set -e # Exit on error
+    git clone https://github.com/SalesforceFoundation/CumulusCI CumulusCI
+    cd CumulusCI
+    git fetch --all
+    git checkout features/cloud-ci-integrations
+    pip install -r requirements.txt
+    cd ..
+    mkdir apex_debug_logs
+
+environment:
+  CUMULUSCI_PATH: CumulusCI
+  TEST_MODE: parallel
+  DEBUG_TESTS: true
+  DEBUG_LOGDIR: apex_debug_logs
+  TEST_JSON_OUTPUT: test_results.json
+  TEST_JUNIT_OUTPUT: test_results_junit.xml
+
+test_pattern: 
+  - 'none'
+
+tests:
+  - type: junit
+    command: cumulusci ci build_router
+    report_files:
+    - "test_results_junit.xml"
+
+collect:
+  repo:
+    - test_results.json
+    - test_results_junit.xml
